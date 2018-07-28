@@ -1,20 +1,18 @@
 ﻿<?php
-
-    $CalendarURL = "https://25livepub.collegenet.com/calendars/csuf-all-events.xml";
-    $CalendarXML = simplexml_load_file($CalendarURL);
-
-    $CalendarItem = "";
+	$CalendarURL = "https://25livepub.collegenet.com/calendars/csuf-all-events.xml";
+    	$CalendarXML = simplexml_load_file($CalendarURL);
+	$CalendarItem = "";
 	$count = 0;
-
-  //adjust timezone for 25Live dates
+	
+	//adjust timezone for 25Live dates
 	$timezone = 'America/Los_Angeles';
 	date_default_timezone_set($timezone);
 
-    foreach($CalendarXML->entry as $Entry)
-    {
-		while($Count < 8) {
-
-		    //format the date of event from GMT to LA timezone
+    	foreach($CalendarXML->entry as $Entry)
+    	{
+		while($Count < 8) 
+		{
+    			//format the date of event from GMT to LA timezone
 			$Two5LiveUTC = strtotime($Entry->published);
 			$Two5LivePDT = date('Y-m-d H:i:s', $Two5LiveUTC);
 			$Two5LivePDT_Month = date('M', $Two5LiveUTC);      
@@ -31,9 +29,8 @@
 			$Count++;
 			break;
 		} 
-    
-    }
+    	}
 	
 	echo $Count;
-    echo $CalendarItem;
+    	echo $CalendarItem;
 ?>
